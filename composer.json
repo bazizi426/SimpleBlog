@@ -1,0 +1,17 @@
+{
+    "name": "bazizi/sitestructure",
+    "description": "This is a simple files structure",
+    "type": "web/application",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "bazizi426",
+            "email": "bazizi426@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+    	"psr-4":{"App\\": "app"}
+    }
+}
