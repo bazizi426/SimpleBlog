@@ -15,6 +15,13 @@ $(document).ready(function(){
         }
         return false;
     });
+
+    $("body > div.container").each(function(){
+        $(this).css({"paddingBottom": "100px"});
+        return;
+    });
+
+
 });
 
 

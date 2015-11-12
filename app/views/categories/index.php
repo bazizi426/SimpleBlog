@@ -47,55 +47,77 @@
 
 <!-- Start container -->
 <div class="container">
-    <h1>There are <?= !empty($categories) ? count($categories) . " categories" : "no categories";  ?></h1>
-
-        <?php if( ! empty($categories) ) : ?>
-            <?php if ( !empty($categories[0])) : ?>
-                <?php foreach($categories as $category) : ?>
-                    <div class="panel panel-default">
-                        <div class="panel-heading text-center lead">
-                            <a href="<?= $this->url('categories/show/') . $category['id']; ?>"><?= $category['name']; ?> <i class="fa fa-star"></i></a>
-                        </div>
-                        <div class="panel-body">
-                            <ul class="nav navbar">
-                                <?php foreach($posts as $post) : ?>
-                                    <?php if( $post['category_id'] === $category['id'] ) : ?>
-                                        <li>
-                                            <a href="<?= $this->url('posts/show/'.str_replace(' ', '-', trim($post['title'])).'-'.$post['id']); ?>"><i class="fa fa-arrow-circle-right"></i> <?= $post['title']; ?></a>
-                                        </li>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
-                            </ul>
-                        </div>
-                        <div class="panel-footer">
-                            <a class="btn btn-sm btn-danger" href="<?= $this->url('categories/delete/'); ?><?= $category['id']; ?>"><i class="fa fa-trash"></i> delete</a>
-                            <a class="btn btn-sm btn-info" href="<?= $this->url('categories/edit/'); ?><?= $category['id']; ?>"><i class="fa fa-edit"></i> edit</a>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            <?php else: ?>
+    <?php
+        if (!empty($categories[0]) ) {
+            echo "<h1>There are " . count($categories) . " categories.</h1>";
+        } else if ( empty($categories) ) {
+            echo "<h1>There are no category.</h1>";
+        } else {
+            echo "<h1>There are one category.</h1>";
+        }
+    ?>
+    <?php if( ! empty($categories) ) : ?>
+        <?php if ( !empty($categories[0])) : ?>
+            <?php foreach($categories as $category) : ?>
                 <div class="panel panel-default">
                     <div class="panel-heading text-center lead">
-                        <a href="<?= $this->url('posts/show/'); ?><?= str_replace(' ', '-', trim($posts['title']) ); ?>-<?= $posts['id']; ?>"><?= $posts['title']; ?></a>
+                        <a href="<?= $this->url('categories/show/') . $category['id']; ?>"><?= $category['name']; ?> <i class="fa fa-star"></i></a>
                     </div>
                     <div class="panel-body">
-                        <p class="lead"><?= $posts['content'];  ?></p>
+                        <ul class="nav navbar">
+                            <?php foreach($posts as $post) : ?>
+                                <?php if( $post['category_id'] === $category['id'] ) : ?>
+                                    <li>
+                                        <a href="<?= $this->url('posts/show/'.str_replace(' ', '-', trim($post['title'])).'-'.$post['id']); ?>"><i class="fa fa-arrow-circle-right"></i> <?= $post['title']; ?></a>
+                                    </li>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </ul>
                     </div>
                     <div class="panel-footer">
-                        <a class="btn btn-sm btn-danger" href="<?= $this->url('posts/delete/'); ?><?= $posts['id']; ?>"><i class="fa fa-trash"></i> delet</a>
-                        <a class="btn btn-sm btn-info" href="<?= $this->url('posts/edit/'); ?><?= $posts['id']; ?>"><i class="fa fa-edit"></i> edit</a>
+                        <a class="btn btn-sm btn-danger" href="<?= $this->url('categories/delete/'); ?><?= $category['id']; ?>"><i class="fa fa-trash"></i> Delete category</a>
+                        <a class="btn btn-sm btn-info" href="<?= $this->url('categories/edit/'); ?><?= $category['id']; ?>"><i class="fa fa-edit"></i> Edit category</a>
                     </div>
                 </div>
-            <?php endif; ?>
+            <?php endforeach; ?>
         <?php else: ?>
-            <div class="text-center">
-                <p class="alert alert-danger"><i class="glyphicon glyphicon-alert"></i> Oups! There are no posts!</p>
-                <a href="<?= $this->url('posts/add'); ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Add post</a>
+            <div class="panel panel-default">
+                <div class="panel-heading text-center lead">
+                    <a href="<?= $this->url('posts/show/'); ?><?= str_replace(' ', '-', trim($categories['name']) ); ?>-<?= $categories['id']; ?>"><?= $categories['name']; ?></a>
+                </div>
+                <div class="panel-body">
+                    <p class="lead"><?php //$posts['content'];  ?></p>
+                    <?php if( !empty($posts[0]) ) : ?>
+                        <ul class="nav navbar">
+                            <?php foreach($posts as $post) : ?>
+                                <?php if( $post['category_id'] === $categories['id'] ) : ?>
+                                    <li>
+                                        <a href="<?= $this->url('posts/show/'.str_replace(' ', '-', trim($post['title'])).'-'.$post['id']); ?>"><i class="fa fa-arrow-circle-right"></i> <?= $post['title']; ?></a>
+                                    </li>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php elseif (!empty($posts)) : ?>
+                        <p>
+                            <a href="<?= $this->url('posts/show/'.str_replace(' ', '-', trim($post['title'])).'-'.$post['id']); ?>"><i class="fa fa-arrow-circle-right"></i> <?= $post['title']; ?></a><?php else: ?>
+                        </p>
+                    <?php endif; ?>
+                </div>
+                <div class="panel-footer">
+                    <a class="btn btn-sm btn-danger" href="<?= $this->url('categories/delete/'); ?><?= $categories['id']; ?>"><i class="fa fa-trash"></i> Delete category</a>
+                    <a class="btn btn-sm btn-info" href="<?= $this->url('categories/edit/'); ?><?= $categories['id']; ?>"><i class="fa fa-edit"></i> Edit category</a>
+                </div>
             </div>
         <?php endif; ?>
-        <p>
-            <a href="<?= $this->url('posts/add'); ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Add post</a>
-        </p>
+    <?php else: ?>
+        <div class="text-center">
+            <p class="alert alert-danger"><i class="glyphicon glyphicon-alert"></i> Oups! There are no categories!</p>
+            <a href="<?= $this->url('categories/add'); ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Add category</a>
+        </div>
+    <?php endif; ?>
+    <p>
+        <a href="<?= $this->url('posts/add'); ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Add post</a>
+    </p>
 </div>
 <!-- End container -->
 

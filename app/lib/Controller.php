@@ -32,12 +32,12 @@ class Controller
 	public function redirectTo($location)
 	{
 		header('HTTP/1.1 301 Redirect Permanantly');
-		header('Location: http://localhost/LabStructure/public/index.php/' . $location);
+		header('Location: http://localhost/LabStructure/public/' . $location);
 	}
 
 	public function url($location)
 	{
-		return "http://localhost/LabStructure/public/index.php/{$location}";
+		return "http://localhost/LabStructure/public/{$location}";
 	}
 }
 
