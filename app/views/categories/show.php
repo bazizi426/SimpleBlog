@@ -1,5 +1,5 @@
 <?php
-    $categories = App\Lib\Model::getAllFrom('categories');
+$categories = App\Lib\Model::getAllFrom('categories');
 
 ?>
 <!DOCTYPE html>

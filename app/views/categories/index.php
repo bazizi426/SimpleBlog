@@ -64,15 +64,31 @@
                         <a href="<?= $this->url('categories/show/') . $category['id']; ?>"><?= $category['name']; ?> <i class="fa fa-star"></i></a>
                     </div>
                     <div class="panel-body">
-                        <ul class="nav navbar">
-                            <?php foreach($posts as $post) : ?>
-                                <?php if( $post['category_id'] === $category['id'] ) : ?>
-                                    <li>
-                                        <a href="<?= $this->url('posts/show/'.str_replace(' ', '-', trim($post['title'])).'-'.$post['id']); ?>"><i class="fa fa-arrow-circle-right"></i> <?= $post['title']; ?></a>
-                                    </li>
+                        <?php if (!empty($posts) ) : ?>
+                            <?php if( isset($posts[0]) ) : ?>
+                                <ul class="nav navbar">
+                                    <?php foreach($posts as $post) : ?>
+                                        <?php if( $post['category_id'] === $category['id'] ) : ?>
+                                            <li>
+                                                <a href="<?= $this->url('posts/show/'.str_replace(' ', '-', trim($post['title'])).'-'.$post['id']); ?>"><i class="fa fa-arrow-circle-right"></i> <?= $post['title']; ?></a>
+                                            </li>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php else : ?>
+                                <?php if( $posts['category_id'] === $category['id'] ) : ?>
+                                    <p class="lead">
+                                        <a href="<?= $this->url('posts/show/'.str_replace(' ', '-', trim($posts['title'])).'-'.$posts['id']); ?>"><i class="fa fa-arrow-circle-right"></i> <?= $posts['title']; ?></a>
+                                    </p>
+                                <?php else : ?>
+                                    <p class="lead">
+                                        this category is empty!
+                                    </p>
                                 <?php endif; ?>
-                            <?php endforeach; ?>
-                        </ul>
+                            <?php endif; ?>
+                        <?php else : ?>
+                            <p class="lead">This category is empty!</p>
+                        <?php endif; ?>
                     </div>
                     <div class="panel-footer">
                         <a class="btn btn-sm btn-danger" href="<?= $this->url('categories/delete/'); ?><?= $category['id']; ?>"><i class="fa fa-trash"></i> Delete category</a>
@@ -98,9 +114,13 @@
                             <?php endforeach; ?>
                         </ul>
                     <?php elseif (!empty($posts)) : ?>
-                        <p>
-                            <a href="<?= $this->url('posts/show/'.str_replace(' ', '-', trim($post['title'])).'-'.$post['id']); ?>"><i class="fa fa-arrow-circle-right"></i> <?= $post['title']; ?></a><?php else: ?>
-                        </p>
+                        <?php if ( $posts['category_id'] === $categories['id'] ) : ?>
+                            <p>
+                                <a href="<?= $this->url('posts/show/'.str_replace(' ', '-', trim($posts['title'])).'-'.$posts['id']); ?>"><i class="fa fa-arrow-circle-right"></i> <?= $posts['title']; ?></a>
+                            </p>
+                        <?php else: ?>
+                            <p class="lead">There are no posts in this category !</p>
+                        <?php endif; ?>
                     <?php endif; ?>
                 </div>
                 <div class="panel-footer">
@@ -109,15 +129,15 @@
                 </div>
             </div>
         <?php endif; ?>
+        <p>
+            <a href="<?= $this->url('posts/add'); ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Add post</a>
+        </p>
     <?php else: ?>
         <div class="text-center">
-            <p class="alert alert-danger"><i class="glyphicon glyphicon-alert"></i> Oups! There are no categories!</p>
+            <p class="alert alert-danger"><i class="fa fa-warning"></i> Oups! There are no categories!</p>
             <a href="<?= $this->url('categories/add'); ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Add category</a>
         </div>
     <?php endif; ?>
-    <p>
-        <a href="<?= $this->url('posts/add'); ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Add post</a>
-    </p>
 </div>
 <!-- End container -->
 
