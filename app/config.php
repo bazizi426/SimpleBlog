@@ -30,8 +30,8 @@ define('BASE_URL', 'http://' . $_SERVER['HTTP_HOST'] . str_replace('index.php', 
 
 // Define the session save path
 define('STORAGE_PATH', dirname(APP_PATH) . '/storage');
-define('SESSION_SAVE_PATH', STORAGE_PATH . '/sessions');
-define('CACHES_PATH', STORAGE_PATH . '/caches');
+define('SESSION_SAVE_PATH', STORAGE_PATH . '/session');
+define('CACHES_PATH', STORAGE_PATH . '/cache');
 
 
 
