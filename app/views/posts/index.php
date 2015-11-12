@@ -10,6 +10,9 @@
             echo "<h1>There are one post.</h1>";
         }
     ?>
+    <p class="alert alert-info">
+        Login to manage the posts <a href="<?= $this->url('users/login'); ?>"></a>
+    </p>
     <?php if( ! empty($posts) ) : ?>
         <?php if ( !empty($posts[0])) : ?>
             <?php foreach($posts as $post) : ?>

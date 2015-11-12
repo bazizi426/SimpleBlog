@@ -1,19 +1,15 @@
 <?php require APP_PATH . "/tpls/header.php"; ?>
 <!-- Start container -->
 <div class="container">
-    <h1>Register form:</h1>
+    <h1>Login :</h1>
 
-    <form class="form-group" action="/receive" method="POST" enctype="application/x-www-form-urlencoded">
-        <label for="name">Name :</label>
-        <input class="form-control" type="text" name="name" id="name" placeholder="Enter your name :" required>
+    <form class="form-group" action="<?= $this->url('users/login_check'); ?>" method="POST" enctype="application/x-www-form-urlencoded">
         <label for="email">Email :</label>
         <input class="form-control" type="email" name="email" id="email" placeholder="Enter your email :" required>
         <label for="password">Password :</label>
         <input class="form-control" type="password" name="password" id="password" placeholder="Enter your password :" required>
-        <label for="cpassword">Confirm Password :</label>
-        <input class="form-control" type="password" name="cpassword" id="cpassword" placeholder="Enter your password again:" required>
 
-        <button class="btn btn-primary" name="submit">Register</button>
+        <button class="btn btn-primary" name="submit">Login</button>
     </form>
 </div>
 <!-- End container -->

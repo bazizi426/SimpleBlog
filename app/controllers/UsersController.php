@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Lib\Controller;
+use App\Models\Post;
 use App\Models\User;
 use App\Lib\Model;
 
@@ -56,6 +57,24 @@ class UsersController extends Controller
 
     public function login()
     {
+        $this->render('users/login');
+    }
 
+    public function login_check()
+    {
+        $islogin = User::login();
+
+        if ( $islogin === true ) {
+            $this->redirectTo('posts/index');
+        } else {
+            return $this->redirectTo('users/login');
+        }
+    }
+
+    public function logout()
+    {
+        session_unset();
+        session_destroy();
+        $this->redirectTo('users/login');
     }
 }

@@ -43,7 +43,7 @@
                 <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true ) : ?>
                     <li><a href="<?= $this->url('users/logout'); ?>"><i class="fa fa-sign-out"></i> Logout</a></li>
                 <?php else : ?>
-                    <li><a href="<?= $this->url('users/register'); ?>"><i class="glyphicon glyphicon-"></i> Register</a></li>
+                    <li><a href="<?= $this->url('users/register'); ?>"><i class="fa fa-save"></i> Register</a></li>
                     <li><a href="<?= $this->url('users/login'); ?>"><i class="fa fa-sign-in"></i> Sign-in</a></li>
                 <?php endif; ?>
             </ul>

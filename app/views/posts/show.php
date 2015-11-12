@@ -1,6 +1,9 @@
 <?php require APP_PATH . "/tpls/header.php"; ?>
 <!-- Start container -->
 <div class="container">
+    <p class="alert alert-info">
+        Login to manage the posts <a href="<?= $this->url('users/login'); ?>"></a>
+    </p>
     <div class="panel panel-info">
         <div class="panel-heading text-center">
             <h1><?= $this->post['title'] ?></h1>

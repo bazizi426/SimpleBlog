@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $timer = microtime(true);
 
@@ -28,7 +29,6 @@ Model::setPDO( PdoFactory::mySqlConnection() );
 
 
 // Section of the Main Classes
-$sessionHandler = $app->set('sessionHandler', 'App\Lib\AppSessionHandler');
 $cache 			= $app->set('cache',          'App\Lib\Cache');
 $router 		= $app->set('router',         'App\Lib\Router');
 $controller 	= $app->set('controller',     'App\Lib\Controller');

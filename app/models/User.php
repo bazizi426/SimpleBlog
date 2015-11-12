@@ -123,4 +123,29 @@ class User extends Model
             return $message = "The password must be between {$min} and {$max}";
         }
     }
+
+    public static function login()
+    {
+        if ( isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['password']) ) {
+            $password = sha1($_POST['email'] . $_POST['password'] . SAULT);
+            $email = $_POST['email'];
+
+            $user = Model::findFromBy('users', [
+                'email' => $email,
+                'password' => $password
+            ]);
+
+            if ( $user !== false ) {
+                $_SESSION['login'] = true;
+                $_SESSION['email'] = $user['email'];
+                $_SESSION['is_admin'] = $user['is_admin'];
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
 }

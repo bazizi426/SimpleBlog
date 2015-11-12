@@ -10,6 +10,9 @@
             echo "<h1>There are one category.</h1>";
         }
     ?>
+    <p class="alert alert-info">
+        Login to manage the categories <a href="<?= $this->url('users/login'); ?>"></a>
+    </p>
     <?php if( ! empty($categories) ) : ?>
         <?php if ( !empty($categories[0])) : ?>
             <?php foreach($categories as $category) : ?>
