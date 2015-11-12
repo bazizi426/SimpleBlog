@@ -1,7 +1,7 @@
 {
-    "name": "bazizi/sitestructure",
-    "description": "This is a simple files structure",
-    "type": "web/application",
+    "name": "bazizi/simpleblog",
+    "description": "Simple blog",
+    "type": "web/php",
     "license": "MIT",
     "authors": [
         {
