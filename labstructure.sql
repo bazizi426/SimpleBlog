@@ -17,9 +17,9 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `labstructure`
+-- Base de données :  `simpleblog`
 --
-
+CREATE DATABASE IF NOT EXISTS `simpleblog`
 -- --------------------------------------------------------
 
 --

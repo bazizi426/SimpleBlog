@@ -15,12 +15,15 @@ function isProductionMode($mode = true) {
 
 // Database config
 define('HOST', 'localhost');
-define('NAME', 'labstructure');
+define('NAME', 'simpleblog');
 define('USERNAME', 'root');
 define('PASSWORD', '');
 
 // Define the application path
 define('APP_PATH', dirname(realpath(__FILE__)));
+
+// Name of the ROOT DIRECTORY  
+define('ROOT_DIR', basename(dirname(APP_PATH)));
 
 // Define application base_url
 define('BASE_URL', 'http://' . $_SERVER['HTTP_HOST'] . str_replace('index.php', '', $_SERVER['SCRIPT_NAME']));

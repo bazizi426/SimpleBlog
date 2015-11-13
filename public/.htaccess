@@ -1,6 +1,6 @@
 RewriteEngine On
 
-RewriteBase /LabStructure/public
+RewriteBase /SimpleBlog-master/public
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 

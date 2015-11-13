@@ -11,6 +11,7 @@ use App\Models\User;
  */
 class UsersController extends Controller
 {
+    protected $messages = [];
     /**
      * Redirect the user to posts/index if his login
      * else redirect his to users/register
@@ -40,15 +41,11 @@ class UsersController extends Controller
     public function receive()
     {
         if( User::register() === true ) {
-            ob_start();
-            $infos = User::$infos;
+            $_SESSION['login'] = true;
             $this->redirectTo('posts/index');
-            echo ob_get_clean();
         } else {
-            ob_start();
-            User::$messages;
+            $this->messages = User::$messages;
             $this->render('users/register');
-            echo ob_get_clean();
         }
     }
 
