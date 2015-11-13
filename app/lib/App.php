@@ -2,13 +2,18 @@
 
 namespace App\Lib;
 
-class App 
+/**
+ * Class App
+ * @package App\Lib
+ */
+class App
 {
 
-
+	// this static property will containes the same instance of this class
 	private static $app = null;
 
-	protected $obj = [];
+	// This porperty containes an instance of classes
+	protected $objs = [];
 
 	/**
 	 * App constructor.
@@ -44,12 +49,13 @@ class App
      */
 	public function set($name, $object)
 	{
-		if( !isset($this->obj[$name])) {
-			$this->obj[$name] = new $object ($this);
+		if( !isset($this->objs[$name])) {
+			$this->objs[$name] = new $object ($this);
 		}
 
-		return $this->obj[$name];
+		return $this->objs[$name];
 	}
+
 
 	/**
 	 * Get object if exists
@@ -58,7 +64,7 @@ class App
      */
 	public function get($name)
 	{
-		return isset($this->obj[$name]) ? $this->obj[$name] : $this;
+		return isset($this->objs[$name]) ? $this->objs[$name] : $this;
 	}
 
 
@@ -70,8 +76,8 @@ class App
      */
 	public function __set($name, $object)
 	{
-		if(!isset($this->obj[$name])) {
-			$this->obj[$name] = new $object ($this->getInstance());
+		if(!isset($this->objs[$name])) {
+			$this->objs[$name] = new $object ($this->getInstance());
 		}
 
 		return $this;
@@ -95,7 +101,7 @@ class App
      */
 	public function exists($name)
 	{
-		return (bool) in_array($name, $this->obj);
+		return (bool) in_array($name, $this->objs);
 	}
 
 }

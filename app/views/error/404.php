@@ -1,20 +1,4 @@
-<?php
-	$categories = \App\Lib\Model::getAllFrom('categories');
-	$posts      = \App\Lib\Model::getAllFrom('posts');
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Page Not found 404</title>
-	<!-- Style sheet files -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="<?= BASE_URL ?>css/style.css">
-
-</head>
-<body>
+<?php require APP_PATH . "/tpls/header.php"; ?>
 <!-- Static navbar -->
 <nav class="navbar navbar-default navbar-static-top" role="navigation">
 	<div class="container">
@@ -64,14 +48,4 @@
 	</div>
 </div>
 <!-- End container -->
-
-<!-- Javascript files -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-<script>
-	try{Modernizr} catch(e) {document.write('<script src="<?= BASE_URL ?>css/modernizr-2.6.2.min.js"><\/script>')}
-</script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="<?= BASE_URL ?>js/script.js"></script>
-</body>
-</html>
+<?php require APP_PATH . "/tpls/footer.php"; ?>

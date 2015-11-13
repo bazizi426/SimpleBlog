@@ -5,6 +5,10 @@ namespace App\Models;
 use App\Lib\Helper;
 use App\Lib\Model;
 
+/**
+ * Class User
+ * @package App\Models
+ */
 class User extends Model
 {
     // max chars
@@ -124,6 +128,10 @@ class User extends Model
         }
     }
 
+    /**
+     * Login the user
+     * @return bool
+     */
     public static function login()
     {
         if ( isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['password']) ) {

@@ -30,18 +30,38 @@ $app = \App\Lib\App::getInstance();
 \App\Lib\Model::setPDO( \App\Lib\PdoFactory::mySqlConnection() );
 
 
-// Main Classes
+/**
+|========================================================
+|                  Main Classes
+|========================================================
+ */
+// Router's object
 $router 		= $app->set('router',         'App\Lib\Router');
+
+// Controller's object
 $controller 	= $app->set('controller',     'App\Lib\Controller');
+
+// Active Record design pattern
+// Model's object
 $model          = $app->set('model',          'App\Lib\Model');
 
-// Controllers Sections
+
+
+/**
+ |========================================================
+ |                  Controllers
+ |========================================================
+ */
 $posts      = $app->set('posts', 'App\Controllers\PostsController');
 $categories = $app->set('categories', 'App\Controllers\CategoriesController');
 $users      = $app->set('users', 'App\Controllers\UsersController');
 
+
+
+
 // Start application
 $router->route($app);
+
 
 /**
  * This condition is used to show the bottom navigation bar

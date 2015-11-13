@@ -6,23 +6,37 @@ use App\Lib\Controller;
 use App\Lib\Model;
 use App\Models\Category;
 
+/**
+ * Class CategoriesController
+ * @package App\Controllers
+ */
 class CategoriesController extends Controller
 {
+    // one category
     protected $category;
 
+    // id of edited page
     protected $idOfEditedPage;
 
+    // all categories
     protected $categories;
 
+    // all posts
     protected $posts = [];
 
     protected $params = [];
 
+    /**
+     * Show categories/index
+     */
     public function index()
     {
         $this->render('categories/index');
     }
 
+    /**
+     * Show one category
+     */
     public function show()
     {
         if(!empty(func_get_args())){
@@ -43,11 +57,17 @@ class CategoriesController extends Controller
     }
 
 
+    /**
+     * Add a category
+     */
     public function add()
     {
         $this->render('categories/add');
     }
 
+    /**
+     * Edit a category
+     */
     public function edit()
     {
         if( isset($_SESSION['login']) && $_SESSION['login'] === true ) {
@@ -73,6 +93,9 @@ class CategoriesController extends Controller
 
     }
 
+    /**
+     * Update a category
+     */
     public function update()
     {
         if( isset($_SESSION['login']) && $_SESSION['login'] === true ) {
@@ -94,6 +117,9 @@ class CategoriesController extends Controller
         }
     }
 
+    /**
+     * Save a category
+     */
     public function save()
     {
         if( isset($_SESSION['login']) && $_SESSION['login'] === true ) {
@@ -101,13 +127,9 @@ class CategoriesController extends Controller
             if ( $result === true ) {
                 $this->redirectTo('categories/index');
             } else if ($result === false ){
-                var_dump($this->idOfEditedPage);
-                die;
                 $this->messages[] = "The category dos not updated, try again !";
                 $this->redirectTo('categories/edit');
             } else {
-                var_dump($result);
-                die;
                 $this->infos['name'] = isset($_POST['name']) ? $_POST['name'] : null;
                 $this->messages[] = $result;
                 $this->redirectTo('categories/edit/');
@@ -117,6 +139,9 @@ class CategoriesController extends Controller
         }
     }
 
+    /**
+     * delete a category
+     */
     public function delete()
     {
         if( isset($_SESSION['login']) && $_SESSION['login'] === true ) {

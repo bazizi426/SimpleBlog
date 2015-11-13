@@ -8,6 +8,10 @@ use App\Lib\Model;
 use App\Models\Post;
 use App\Models\Category;
 
+/**
+ * Class PostsController
+ * @package App\Controllers
+ */
 class PostsController extends Controller
 {
 	// Id of the edited page
@@ -31,15 +35,18 @@ class PostsController extends Controller
 	// Error massages
 	protected $messages = [];
 
+	/**
+	 * show posts/index view
+     */
 	public function index()
 	{
-		$params = null;
-		if(func_num_args() > 0) {
-			$params = func_get_args()[0];
-		}
 		$this->render('posts/index');
 	}
 
+	/**
+	 * Show the post-{id}
+	 * id from URL
+     */
 	public function show()
 	{
 		if(!empty(func_get_args())){
@@ -59,6 +66,9 @@ class PostsController extends Controller
 	}
 
 
+	/**
+	 * Show the posts/add view
+     */
 	public function add()
 	{
 		if( isset($_SESSION['login']) && $_SESSION['login'] === true ) {
@@ -101,6 +111,10 @@ class PostsController extends Controller
 		}
 	}
 
+	/**
+	 * save post
+	 * @return string
+     */
 	public function save()
 	{
 		if( isset($_SESSION['login']) && $_SESSION['login'] === true ) {
@@ -124,6 +138,9 @@ class PostsController extends Controller
 		}
 	}
 
+	/**
+	 * update post
+     */
 	public function update()
 	{
 		if( isset($_SESSION['login']) && $_SESSION['login'] === true ) {
@@ -145,6 +162,9 @@ class PostsController extends Controller
 		}
 	}
 
+	/**
+	 * Delete post
+     */
 	public function delete()
 	{
 		if( isset($_SESSION['login']) && $_SESSION['login'] === true ) {

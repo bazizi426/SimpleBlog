@@ -5,14 +5,23 @@ namespace App\Models;
 use App\Lib\Helper;
 use App\Lib\Model;
 
+/**
+ * Class Category
+ * @package App\Models
+ */
 class Category extends Model
 {
     // This property containes all registration errors
     public static $messages = [];
 
+    // category informations
     public static $infos = [];
 
 
+    /**
+     * save category
+     * @return bool|string
+     */
     public static function save()
     {
         if( isset($_POST['save']) ) {
@@ -34,6 +43,10 @@ class Category extends Model
         }
     }
 
+    /**
+     * edit a category
+     * @return bool|string
+     */
     public static function edit()
     {
         self::$infos['id'] = $_POST['id'];

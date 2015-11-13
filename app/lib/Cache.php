@@ -3,7 +3,8 @@
 namespace App\Lib;
 /**
  * Cache Class
- * This class containes all actions related the caching
+ * This class containes all caching actions
+ * @author Grafikart
  */
 class Cache
 {

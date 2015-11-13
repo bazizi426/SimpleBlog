@@ -1,12 +1,15 @@
 <?php 
 
 namespace App\Lib;
-
+/**
+ * Class Router
+ * @package App\Lib
+ */
 class Router
 {
 	/**
-	 * The route method call controller  
-	 * then apply the action and passing the args
+	 * The route method calls a specefic controller
+	 * then apply the action and passing the arguments passed in URL
 	 * @param App $app
 	 * @return mixte 
 	 */
@@ -14,24 +17,22 @@ class Router
 	{
 
 		$urls = $this->cleanUrl();
-		
+
 		$controller = !empty($urls) ? array_shift($urls) : 'index';
 		$action 	= !empty($urls) ? array_shift($urls) : '';
 		$params		= !empty($urls) ? $urls : '';
 
-
 		if($controller === 'index'){
-		
+
 			return $app->controller->index();
 		
 		} else {
-			
 			if($app->exists($app->$controller)) {
-				
+
 				if($action !== ''){
-					
+
 					if (method_exists($app->$controller, $action)) {
-						
+
 						call_user_func_array([$app->$controller, $action], [$params]);
 						return;
 					
@@ -52,7 +53,6 @@ class Router
 	/**
 	 * Filter the url, clean it and slice it
 	 * @return array
-	 *
 	 */
 
 	protected function cleanUrl()

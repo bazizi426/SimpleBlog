@@ -5,6 +5,10 @@ namespace App\Models;
 use App\Lib\Helper;
 use App\Lib\Model;
 
+/**
+ * Class Post
+ * @package App\Models
+ */
 class Post extends Model
 {
     // this property containes some user informations if his successfully registered
@@ -13,6 +17,10 @@ class Post extends Model
     // This property containes all registration errors
     public static $messages = [];
 
+    /**
+     * save the post
+     * @return bool|string
+     */
     public static function save()
     {
         if( isset($_POST['save']) ) {
@@ -38,6 +46,10 @@ class Post extends Model
         }
     }
 
+    /**
+     * edit a post
+     * @return bool|string
+     */
     public static function edit()
     {
         self::$infos['id'] = $_POST['id'];

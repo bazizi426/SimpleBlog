@@ -2,9 +2,17 @@
 
 namespace App\Lib;
 
-
+/**
+ * Class Helper
+ * @package App\Lib
+ */
 class Helper
 {
+    /**
+     * Filter inputs
+     * @param $input
+     * @return mixed
+     */
     public static function filter($input)
     {
         $input = filter_var(
@@ -15,12 +23,22 @@ class Helper
         return $input;
     }
 
+    /**
+     * Dump and die
+     * This method used just for debuging
+     * @return void
+     */
     public static function dumpAndDie()
     {
         var_dump(func_get_args());
         die;
     }
 
+    /**
+     * This method for debuging witch prints a nice error messages
+     * It containes the file and the line of this error message
+     * @param $var
+     */
     public static function debug($var)
     {
         $debug = debug_backtrace();

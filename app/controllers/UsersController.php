@@ -3,23 +3,18 @@
 namespace App\Controllers;
 
 use App\Lib\Controller;
-use App\Models\Post;
 use App\Models\User;
-use App\Lib\Model;
 
+/**
+ * Class UsersController
+ * @package App\Controllers
+ */
 class UsersController extends Controller
 {
-    // property containes SessionHandler Calss
-    public $session;
-
     /**
-     * UsersController constructor.
+     * Redirect the user to posts/index if his login
+     * else redirect his to users/register
      */
-    public function __construct()
-    {
-        $this->session = parent::$app->sessionHandler;
-    }
-
     public function index()
     {
         if( isset($this->session->email) ) {
@@ -39,9 +34,11 @@ class UsersController extends Controller
         $this->render('users/register');
     }
 
+    /**
+     * Receive the registration datas from register view
+     */
     public function receive()
     {
-
         if( User::register() === true ) {
             ob_start();
             $infos = User::$infos;
@@ -55,11 +52,18 @@ class UsersController extends Controller
         }
     }
 
+    /**
+     * Render the login view
+     */
     public function login()
     {
         $this->render('users/login');
     }
 
+    /**
+     * Verify if the user is sign-in or not
+     * @return void
+     */
     public function login_check()
     {
         $islogin = User::login();
@@ -71,6 +75,10 @@ class UsersController extends Controller
         }
     }
 
+    /**
+     * Logout user
+     * session destroy
+     */
     public function logout()
     {
         session_unset();

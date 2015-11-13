@@ -1,14 +1,22 @@
 <?php
 
 namespace App\Lib;
-
+/**
+ * Active record design pattern
+ * Class Model
+ * @package App\Lib
+ */
 class Model
 {
+    // The table name
     protected static $tableName;
 
+    // PDO instance
     protected static $pdo;
 
     /**
+     * Set the pdo object
+     * Dependency injection
      * @param $pdo
      */
     public static function setPDO($pdo)
@@ -38,7 +46,7 @@ class Model
     }
 
     /**
-     * Get one record
+     * Get just one record
      * @param $tableName
      * @param int $id
      * @return mixed
@@ -54,7 +62,7 @@ class Model
     }
 
     /**
-     * find records by passing array
+     * Find all records witch are respect the conditions (WHERE, AND)
      * @param $tableName
      * @param array $conds
      * @return mixed
