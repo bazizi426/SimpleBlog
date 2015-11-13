@@ -12,7 +12,7 @@ session_start();
 // With this class we don't need to build a custome Autoloader class
 require '../vendor/autoload.php';
 
-// Database connection 
+// Application configurations 
 require 'config.php';
 
 // ( development OR production ) mode
@@ -21,9 +21,11 @@ require 'config.php';
 $mode = isProductionMode(false);
 
 
-// Singletoone Design pattern
+// Registry Design pattern
+// And Singletoone Design pattern
 // Application class
 $app = \App\Lib\App::getInstance();
+
 
 // Dependency injection design pattern
 // Inject the PDO object in the model class

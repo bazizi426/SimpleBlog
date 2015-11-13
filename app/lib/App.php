@@ -3,6 +3,7 @@
 namespace App\Lib;
 
 /**
+ * Registry Design pattern
  * Class App
  * @package App\Lib
  */
