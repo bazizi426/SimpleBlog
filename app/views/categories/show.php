@@ -1,9 +1,11 @@
 <?php require APP_PATH . "/tpls/header.php"; ?>
 <!-- Start container -->
 <div class="container">
-    <p class="alert alert-info">
-        Login to manage the categories <a href="<?= $this->url('users/login'); ?>"></a>
-    </p>
+    <?php if ( !isset($_SESSION['login']) || $_SESSION['login'] !== true ) : ?>
+        <p class="alert alert-info">
+            Login to manage the categories <a href="<?= $this->url('users/login'); ?>"></a>
+        </p>
+    <?php endif; ?>
     <div class="panel panel-info">
         <div class="panel-heading text-center">
             <h1><?= $this->category['name'] ?></h1>
@@ -33,8 +35,10 @@
         </div>
         <div class="panel-footer text-center">
             <a href="<?= $this->url('categories/add'); ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Add category</a>
-            <a href="<?= $this->url('categories/edit/'.$this->category['id']); ?>" class="btn btn-info"><i class="fa fa-edit"></i> Edit category</a>
-            <a href="<?= $this->url('categories/delete/'.$this->category['id']); ?>" class="btn btn-danger"><i class="fa fa-remove"></i> Delete category</a>
+            <?php if ( isset($_SESSION['login']) && $_SESSION['login'] === true ) : ?>
+                <a href="<?= $this->url('categories/edit/'.$this->category['id']); ?>" class="btn btn-info"><i class="fa fa-edit"></i> Edit category</a>
+                <a href="<?= $this->url('categories/delete/'.$this->category['id']); ?>" class="btn btn-danger"><i class="fa fa-remove"></i> Delete category</a>
+            <?php endif; ?>
         </div>
     </div>
 </div>

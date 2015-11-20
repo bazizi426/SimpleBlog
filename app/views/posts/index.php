@@ -10,9 +10,12 @@
             echo "<h1>There are one post.</h1>";
         }
     ?>
-    <p class="alert alert-info">
-        Login to manage the posts <a href="<?= $this->url('users/login'); ?>"></a>
-    </p>
+    <?php if ( ! isset($_SESSION['login']) || $_SESSION['login'] !== true ) : ?>
+        <p class="alert alert-info">
+            Login to manage the posts <a href="<?= $this->url('users/login'); ?>"></a>
+        </p>
+    <?php endif; ?>
+
     <?php if( ! empty($posts) ) : ?>
         <?php if ( !empty($posts[0])) : ?>
             <?php foreach($posts as $post) : ?>
@@ -24,8 +27,10 @@
                         <p class="lead"><?= $post['content']; ?></p>
                     </div>
                     <div class="panel-footer">
-                        <a class="btn btn-sm btn-danger" href="<?= $this->url('posts/delete/'); ?><?= $post['id']; ?>"><i class="fa fa-trash"></i> delet</a>
-                        <a class="btn btn-sm btn-info" href="<?= $this->url('posts/edit/'); ?><?= $post['id']; ?>"><i class="fa fa-edit"></i> edit</a>
+                        <?php if ( isset($_SESSION['login']) && $_SESSION['login'] === true ) : ?>
+                            <a class="btn btn-sm btn-danger" href="<?= $this->url('posts/delete/'); ?><?= $post['id']; ?>"><i class="fa fa-trash"></i> delet</a>
+                            <a class="btn btn-sm btn-info" href="<?= $this->url('posts/edit/'); ?><?= $post['id']; ?>"><i class="fa fa-edit"></i> edit</a>
+                        <?php endif; ?>
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -39,8 +44,10 @@
                     <p class="lead"><?= $posts['content']; ?></p>
                 </div>
                 <div class="panel-footer">
-                    <a class="btn btn-sm btn-danger" href="<?= $this->url('posts/delete/'); ?><?= $posts['id']; ?>"><i class="fa fa-trash"></i> delet</a>
-                    <a class="btn btn-sm btn-info" href="<?= $this->url('posts/edit/'); ?><?= $posts['id']; ?>"><i class="fa fa-edit"></i> edit</a>
+                    <?php if ( isset($_SESSION['login']) && $_SESSION['login'] === true ) : ?>
+                        <a class="btn btn-sm btn-danger" href="<?= $this->url('posts/delete/'); ?><?= $posts['id']; ?>"><i class="fa fa-trash"></i> delet</a>
+                        <a class="btn btn-sm btn-info" href="<?= $this->url('posts/edit/'); ?><?= $posts['id']; ?>"><i class="fa fa-edit"></i> edit</a>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php else: ?>
@@ -52,8 +59,10 @@
                     <p class="lead"><?= $posts['content'];  ?></p>
                 </div>
                 <div class="panel-footer">
-                    <a class="btn btn-sm btn-danger" href="<?= $this->url('posts/delete/'); ?><?= $posts['id']; ?>"><i class="fa fa-trash"></i> delet</a>
-                    <a class="btn btn-sm btn-info" href="<?= $this->url('posts/edit/'); ?><?= $posts['id']; ?>"><i class="fa fa-edit"></i> edit</a>
+                    <?php if ( isset($_SESSION['login']) && $_SESSION['login'] === true ) : ?>
+                        <a class="btn btn-sm btn-danger" href="<?= $this->url('posts/delete/'); ?><?= $posts['id']; ?>"><i class="fa fa-trash"></i> delet</a>
+                        <a class="btn btn-sm btn-info" href="<?= $this->url('posts/edit/'); ?><?= $posts['id']; ?>"><i class="fa fa-edit"></i> edit</a>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php endif; ?>

@@ -10,9 +10,12 @@
             echo "<h1>There are one category.</h1>";
         }
     ?>
-    <p class="alert alert-info">
-        Login to manage the categories <a href="<?= $this->url('users/login'); ?>"></a>
-    </p>
+    <?php if ( !isset($_SESSION['login']) || $_SESSION['login'] !== true ) : ?>
+        <p class="alert alert-info">
+            Login to manage the categories <a href="<?= $this->url('users/login'); ?>"></a>
+        </p>
+    <?php endif; ?>
+    
     <?php if( ! empty($categories) ) : ?>
         <?php if ( !empty($categories[0])) : ?>
             <?php foreach($categories as $category) : ?>
@@ -48,8 +51,10 @@
                         <?php endif; ?>
                     </div>
                     <div class="panel-footer">
-                        <a class="btn btn-sm btn-danger" href="<?= $this->url('categories/delete/'); ?><?= $category['id']; ?>"><i class="fa fa-trash"></i> Delete category</a>
-                        <a class="btn btn-sm btn-info" href="<?= $this->url('categories/edit/'); ?><?= $category['id']; ?>"><i class="fa fa-edit"></i> Edit category</a>
+                        <?php if ( isset($_SESSION['login']) && $_SESSION['login'] === true ) : ?>
+                            <a class="btn btn-sm btn-danger" href="<?= $this->url('categories/delete/'); ?><?= $category['id']; ?>"><i class="fa fa-trash"></i> Delete category</a>
+                            <a class="btn btn-sm btn-info" href="<?= $this->url('categories/edit/'); ?><?= $category['id']; ?>"><i class="fa fa-edit"></i> Edit category</a>
+                        <?php endif; ?>
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -81,8 +86,10 @@
                     <?php endif; ?>
                 </div>
                 <div class="panel-footer">
-                    <a class="btn btn-sm btn-danger" href="<?= $this->url('categories/delete/'); ?><?= $categories['id']; ?>"><i class="fa fa-trash"></i> Delete category</a>
-                    <a class="btn btn-sm btn-info" href="<?= $this->url('categories/edit/'); ?><?= $categories['id']; ?>"><i class="fa fa-edit"></i> Edit category</a>
+                    <?php if ( isset($_SESSION['login']) && $_SESSION['login'] === true ) : ?>
+                        <a class="btn btn-sm btn-danger" href="<?= $this->url('categories/delete/'); ?><?= $categories['id']; ?>"><i class="fa fa-trash"></i> Delete category</a>
+                        <a class="btn btn-sm btn-info" href="<?= $this->url('categories/edit/'); ?><?= $categories['id']; ?>"><i class="fa fa-edit"></i> Edit category</a>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php endif; ?>

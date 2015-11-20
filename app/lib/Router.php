@@ -17,7 +17,6 @@ class Router
 	{
 
 		$urls = $this->cleanUrl();
-		
 
 		$controller = !empty($urls) ? array_shift($urls) : 'index';
 		$action 	= !empty($urls) ? array_shift($urls) : '';
@@ -61,9 +60,14 @@ class Router
 		$urls = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
 		$urls = str_replace([ ROOT_DIR, 'public', 'index.php' ], '', $urls);
 		foreach($urls as $url) {
+
 			if(empty($url)){
 				array_shift($urls);
 			}
+		}
+
+		if ( empty($urls[0]) ) {
+			array_shift($urls);
 		}
 
 		return $urls;
