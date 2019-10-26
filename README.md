@@ -1,10 +1,10 @@
 # SimpleBlog
 Simple blog, without using any external framework
 =================================================
-after pulling this repository, open http://localhost/phpmyadmin; then import the the file **labstructure.sql** This file containes the tables that this application need to run.
+after pulling this repository, open http://localhost/phpmyadmin; then import the file **labstructure.sql** This file containes the tables which this application needs to run.
 
 
-database's name "simpleblog"
+database name "simpleblog"
 root directory  "SimpleBlog-master"
 
 Then run the folowing CL with composer
@@ -20,5 +20,4 @@ http://localhost/{blogDirectory}/posts
 to see how it works you can add some dummy categories, users, and posts in your database
 
 
-You find some errors because this version of this blog is in development mode.
-
+If you find any errors please let me know. :)
